@@ -4,7 +4,7 @@ val scala213 = "2.13.2"
 
 ThisBuild / crossScalaVersions := List(scala213)
 ThisBuild / scalaVersion     := scala213
-ThisBuild / version          := "0.2.0"
+ThisBuild / version          := "0.3.0-RC2"
 ThisBuild / organization     := "com.arkondata"
 
 
@@ -25,9 +25,9 @@ inThisBuild(Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "opentracing",
-    publishArtifact := false
+    skip in publish := true
   )
-  .aggregate(scala, akka, effect, akkaEffect, fs2)
+  .aggregate(scala, akka, fs2)
 
 lazy val scala = (project in file("scala"))
   .settings(
@@ -35,7 +35,7 @@ lazy val scala = (project in file("scala"))
     libraryDependencies ++= Seq(
       Dependencies.`opentracing-api`,
       Dependencies.`cats-core`,
-      Dependencies.`cats-effect` % Test
+      Dependencies.`cats-effect`
     ),
     libraryDependencies ++= testDependencies
   )
@@ -48,26 +48,12 @@ lazy val akka = (project in file("akka"))
   )
   .dependsOn(scala % "compile->compile;test->test")
 
-lazy val effect = (project in file("effect"))
-  .settings(
-    name := "opentracing-effect",
-    libraryDependencies += Dependencies.`cats-effect`
-  )
-  .dependsOn(scala)
-
-lazy val akkaEffect = (project in file("akka-effect"))
-  .settings(
-    name := "opentracing-akka-effect"
-  )
-  .dependsOn(akka, effect)
-
 lazy val fs2 = (project in file("fs2"))
   .settings(
     name := "opentracing-fs2",
     libraryDependencies += Dependencies.`fs2-core`
   )
-  .dependsOn(effect)
-
+  .dependsOn(scala)
 
 lazy val testDependencies = Seq(
   Dependencies.scalatest          % Test,
