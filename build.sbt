@@ -7,7 +7,17 @@ ThisBuild / scalaVersion     := scala213
 ThisBuild / version          := "0.3.0-RC2"
 ThisBuild / organization     := "com.arkondata"
 
+
+ThisBuild / homepage   := Some(url("https://github.com/Grupo-Abraxas/opentracing-scala"))
+ThisBuild / scmInfo    := Some(ScmInfo(homepage.value.get, "git@github.com:Grupo-Abraxas/opentracing-scala.git"))
+ThisBuild / developers := List(
+                            Developer("fehu", "Dmitry K", "kdn.kovalev@gmail.com", url("https://github.com/fehu"))
+                          )
+ThisBuild / licenses += ("MIT", url("https://opensource.org/licenses/MIT"))
+
+
 inThisBuild(Seq(
+  scalacOptions in Compile ++= Seq("-feature", "-deprecation", "-unchecked"),
   addCompilerPlugin(Dependencies.`kind-projector`),
   addCompilerPlugin(Dependencies.`monadic-for`)
 ))
@@ -53,3 +63,29 @@ lazy val testDependencies = Seq(
 
 // Has its own configuration file (and own version)
 lazy val compilerPlugin = project in file("compiler-plugin")
+
+// Tests
+
+Global / concurrentRestrictions := Seq(
+  Tags.limit(Tags.CPU, 1),
+  Tags.limit(Tags.Test, 1)
+)
+
+// Publishing
+
+ThisBuild / publishMavenStyle := true
+ThisBuild / publishTo := sonatypePublishToBundle.value
+ThisBuild / pomIncludeRepository := { _ => false }
+
+Global / PgpKeys.gpgCommand := (baseDirectory.value / "gpg.sh").getAbsolutePath
+
+ThisBuild / credentials += Credentials(
+  "Sonatype Nexus Repository Manager",
+  "oss.sonatype.org",
+  sys.env.getOrElse("SONATYPE_USER", ""),
+  sys.env.getOrElse("SONATYPE_PWD", "")
+)
+
+// Fix for error `java.net.ProtocolException: Too many follow-up requests: 21`
+// See [[https://github.com/sbt/sbt-pgp/issues/150]]
+ThisBuild / updateOptions := updateOptions.value.withGigahorse(false)

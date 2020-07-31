@@ -1,3 +1,6 @@
+![Scala CI - Publish](https://github.com/Grupo-Abraxas/opentracing-scala/workflows/Scala%20CI%20-%20Publish/badge.svg)
+![Maven Central: opentracing-scala](https://img.shields.io/maven-central/v/com.arkondata/opentracing-scala_2.13)
+
 # opentracing-scala
 
 Functional interface for opentracing and an implementation, based on `cats.data.StateT`.
