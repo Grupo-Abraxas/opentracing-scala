@@ -5,7 +5,7 @@ val scala213 = "2.13.2"
 ThisBuild / crossScalaVersions := List(scala213)
 ThisBuild / scalaVersion     := scala213
 ThisBuild / version          := "0.3.0-RC2"
-ThisBuild / organization     := "com.github.fehu"
+ThisBuild / organization     := "com.arkondata"
 
 inThisBuild(Seq(
   addCompilerPlugin(Dependencies.`kind-projector`),
