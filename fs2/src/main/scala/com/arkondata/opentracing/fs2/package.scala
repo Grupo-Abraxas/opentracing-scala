@@ -4,7 +4,6 @@ import cats.~>
 import cats.arrow.FunctionK
 import cats.effect.{ ExitCase, Sync }
 import cats.effect.syntax.bracket._
-import cats.instances.option._
 import cats.syntax.flatMap._
 import cats.syntax.foldable._
 import cats.syntax.functor._

@@ -2,8 +2,6 @@ package com.arkondata.opentracing
 
 import cats.effect.{ Resource, Sync }
 import cats.{ Applicative, Defer, Monad }
-import cats.instances.list._
-import cats.instances.option._
 import cats.syntax.flatMap._
 import cats.syntax.functor._
 import cats.syntax.traverse._
