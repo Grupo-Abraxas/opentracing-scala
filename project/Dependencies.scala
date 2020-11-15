@@ -26,7 +26,7 @@ object Dependencies {
 
     lazy val cats           = "2.2.0"
     lazy val catsEffect     = "2.2.0"
-    lazy val fs2            = "2.4.4"
+    lazy val fs2            = "2.4.5"
 
     lazy val kindProjector  = "0.11.0"
     lazy val monadicFor     = "0.3.1"
