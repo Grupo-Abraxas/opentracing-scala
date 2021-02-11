@@ -24,8 +24,8 @@ object Dependencies {
     lazy val opentracing    = "0.33.0"
     lazy val jaegerClient   = "0.33.1"
 
-    lazy val cats           = "2.3.1"
-    lazy val catsEffect     = "2.3.1"
+    lazy val cats           = "2.4.1"
+    lazy val catsEffect     = "2.4.1"
     lazy val fs2            = "2.4.6"
 
     lazy val kindProjector  = "0.11.2"
